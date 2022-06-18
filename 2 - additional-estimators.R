@@ -77,8 +77,8 @@ lambda.hill.exp <- function(data, quant=0.95, omegas){
     Mw.ext <- Mw[Mw>u]
     lambda.est[iter] <- 1/mean(Mw.ext-u)
   }
-  
-  return(lambda.est)
+      
+  return(min(lambda.est,1))
 }
 
 ###############################################################################
