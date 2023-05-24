@@ -84,17 +84,17 @@ consistentEstimation <- function(data, quant=0.999, thresh.quant=0.5, nei=100, l
   # Use asymmetric Laplace for quantile regression of threshold:
   # Fit on log(R) then back-transform:
   fmla_ald <- paste('logR.E ~ s(W.E, k=',knot.num,', bs="bs", m=1)')
-  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=0.5), knots=knots1)
+  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=thresh.quant), knots=knots1)
   thresh.smooth1 <- exp(predict(m_ald, newdata=list(W.E=W.E))$location) # Estimates at all observed W.E values (for threshold-exceedance calculations)
   thresh.smooth1a <- exp(predict(m_ald, newdata=list(W.E=Wstar))$location) # Estimates at all observed W* values only
   
   fmla_ald <- paste('logR.E ~ s(W.E, k=',knot.num+1,', bs="bs", m=2)')
-  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=0.5), knots=knots2)
+  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=thresh.quant), knots=knots2)
   thresh.smooth2 <- exp(predict(m_ald, newdata=list(W.E=W.E))$location)
   thresh.smooth2a <- exp(predict(m_ald, newdata=list(W.E=Wstar))$location)
   
   fmla_ald <- paste('logR.E ~ s(W.E, k=',knot.num+2,', bs="bs", m=3)')
-  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=0.5), knots=knots3)
+  m_ald <- evgam(as.formula(fmla_ald), data=as.data.frame(cbind(logR.E,W.E)), family="ald", ald.args=list(tau=thresh.quant), knots=knots3)
   thresh.smooth3 <- exp(predict(m_ald, newdata=list(W.E=W.E))$location)
   thresh.smooth3a <- exp(predict(m_ald, newdata=list(W.E=Wstar))$location)
   
