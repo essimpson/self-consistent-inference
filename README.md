@@ -1,6 +1,6 @@
 # self-consistent-inference
 
-Code to accompany the paper 'Estimating the limiting shape of bivariate scaled sample clouds for self-consistent inference of extremal dependence properties' (Simpson and Tawn, 2022+).
+Code to accompany the paper 'Estimating the limiting shape of bivariate scaled sample clouds: with additional benefits of self-consistent inference for existing extremal dependence properties' (Simpson and Tawn, 2024+).
 
 The file '1 - G-estimation.R' contains the functions required to run our full estimation appraoch.
 
