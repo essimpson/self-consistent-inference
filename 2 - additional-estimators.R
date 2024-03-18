@@ -75,10 +75,10 @@ lambda.hill.exp <- function(data, quant=0.95, omegas){
     u <- quantile(Mw,quant)  
     
     Mw.ext <- Mw[Mw>u]
-    lambda.est[iter] <- 1/mean(Mw.ext-u)
+    lambda.est[iter] <- min(1, 1/mean(Mw.ext-u))
   }
       
-  return(min(lambda.est,1))
+  return(lambda.est)
 }
 
 ###############################################################################
